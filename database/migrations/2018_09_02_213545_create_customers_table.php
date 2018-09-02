@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateCustomersTable extends Migration
 {
@@ -17,8 +18,8 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->string('company_name')->nullable();
             $table->string('customer_name')->nullable();
-            $table->string('latitude ')->nullable();
-			$table->string('longitude ')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             });
     }
 
@@ -29,6 +30,6 @@ class CreateCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('customers');
+        Schema::dropIfExists('customers');
     }
 }
