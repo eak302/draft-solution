@@ -16,12 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/welcome', 'WelcomeController@index')->name('welcome');
-
 Route::get('admin', function () {
     return view('backend/layouts/main');
 });
-Auth::routes();
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
