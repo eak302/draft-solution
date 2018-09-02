@@ -11,20 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-Route::get('admin', function () {
-    return view('backend/layouts/main');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return redirect('admin');
+    });
+
+    Route::get('admin', function () {
+        return view('backend/layouts/main');
+    })->name('admin');
+
+    Route::resource('admin/customer', 'Customer\\CustomerController', ['as' => 'customer']);
+    Route::resource('admin/technology', 'Technology\\TechnologyController', ['as' => 'technology']);
+    Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
+    Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);
+    Route::resource('admin/draft', 'Draft\\DraftController', ['as' => 'draft']);
+
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
-
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-
-Route::resource('admin/customer', 'Customer\\CustomerController');
-Route::resource('admin/technology', 'Technology\\TechnologyController');
-Route::resource('admin/equipment', 'Equipment\\EquipmentController');
-Route::resource('admin/service', 'Service\\ServiceController');
-Route::resource('admin/draft', 'Draft\\DraftController');

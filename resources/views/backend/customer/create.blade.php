@@ -1,5 +1,8 @@
 @extends('backend.layouts.main')
 
+@section('page-title')
+    ข้อมูลลูกค้า
+@endsection
 @section('content')
     <div class="container">
         <div class="row">
@@ -9,7 +12,9 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Create New Customer</div>
+                    <div class="card-header">
+                        <h3>{{ config('app.name') }}</h3>
+                    </div>
                     <div class="card-body">
                         {{-- <a href="{{ url('/admin/customer') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
