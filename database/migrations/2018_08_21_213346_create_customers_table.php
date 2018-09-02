@@ -17,7 +17,8 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->string('company_name')->nullable();
             $table->string('customer_name')->nullable();
-            $table->string('location')->nullable();
+            $table->string('latitude ')->nullable();
+			$table->string('longitude ')->nullable();
             });
     }
 
