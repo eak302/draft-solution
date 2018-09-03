@@ -113,4 +113,15 @@ class CustomerController extends Controller {
         return redirect('admin/customer')->with('flash_message', 'Customer deleted!');
     }
 
+    public function dataAjaxCustomer(Request $request) {
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = Customer::where('customer_name','LIKE',"%$search%")->get();
+        }
+
+        return response()->json($data);
+    }
+
 }

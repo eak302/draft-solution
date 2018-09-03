@@ -306,6 +306,7 @@ a:focus {
 }
 .content-header {
   position: relative;
+  background-color: #fff;
   padding: 15px 15px 0 15px;
 }
 .content-header > h1 {

@@ -22,7 +22,9 @@ Route::middleware(['auth'])->group(function () {
         return view('backend/layouts/main');
     })->name('admin');
 
+    Route::get('/admin/ajax-customer', 'Customer\\CustomerController@dataAjaxCustomer')->name('ajax-customer');
     Route::resource('admin/customer', 'Customer\\CustomerController', ['as' => 'customer']);
+
     Route::resource('admin/technology', 'Technology\\TechnologyController', ['as' => 'technology']);
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
     Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);

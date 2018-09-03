@@ -11,15 +11,13 @@
 </script>
 <!-- Content Header (Page header) -->
 
-<div class="box">
-    <div class="box-body">
+    <div class="table-responsive">
         <table id="table-customer" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>Company</th>
                     <th>Customer Name</th>
-                    <th>Location</th>
                     <th>Tool</th>
                 </tr>
             </thead>
@@ -29,7 +27,6 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->company_name }}</td>
                         <td>{{ $item->customer_name }}</td>
-                        <td>{{ $item->location }}</td>
                         <td class="text-center">
                             <form action="{{ route('customer.customer.destroy', $item->id) }}" method="POST">
                                 @method('DELETE')
@@ -44,6 +41,4 @@
             </tbody>
         </table>
     </div>
-    <!-- /.box-body -->
-</div>
 @endsection

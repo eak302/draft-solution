@@ -58,9 +58,13 @@
             </ol>
             </section>
             <br>
-            <div class="container">
-                @yield('content')
-            </div>
+            {{-- <div class="container"> --}}
+                <div class="box" style="margin: 10px;">
+                    <div class="box-body">
+                        @yield('content')
+                    </div>
+                </div>
+            {{-- </div> --}}
         </div>
         
         <!-- Main Footer -->
