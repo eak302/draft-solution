@@ -40,9 +40,9 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
-        @include('backend\layouts\header')
+        @include('layouts.header')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('backend\layouts\sidebar')
+        @include('layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         

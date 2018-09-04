@@ -117,4 +117,20 @@ class ServiceController extends Controller
 
         return redirect('admin/service')->with('flash_message', 'Service deleted!');
     }
+
+    // frontend
+    // frontend
+    public function createService(Request $request) {
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $service = Service::where('name', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $service = Service::latest()->paginate($perPage);
+        }
+        
+        return view('frontend.service.create', compact('service'));
+    }
 }

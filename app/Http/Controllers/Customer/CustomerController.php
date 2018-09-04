@@ -124,4 +124,30 @@ class CustomerController extends Controller {
         return response()->json($data);
     }
 
+    // frontend
+    public function createCustomer(Request $request) {
+        $draft = $request->session()->get('draft');
+        return view('frontend.customer.create' ,compact('draft', $draft));
+    }
+
+    public function postCreateCustomer(Request $request) {
+
+        $validatedData = $request->validate([
+            'company_name' => 'required',
+            'customer_name' => 'required',
+        ]);
+ 
+        // if(empty($request->session()->get('draft'))){
+        //     $draft = new StepFrom();
+        //     $draft->fill($validatedData);
+        //     $draft->session()->put('draft', $draft);
+        // }else{
+        //     $draft = $request->session()->get('draft');
+        //     $draft->fill($validatedData);
+        //     $request->session()->put('draft', $draft);
+        // }
+        return redirect('/service-create');
+ 
+    }
+
 }

@@ -1,19 +1,19 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row">
-            {{-- @include('admin.sidebar') --}}
+            @include('admin.sidebar')
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Service</div>
+                    <div class="card-header">Draft</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/service/create') }}" class="btn btn-success btn-sm" title="Add New Service">
+                        <a href="{{ url('/admin/draft/create') }}" class="btn btn-success btn-sm" title="Add New Draft">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/service') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <form method="GET" action="{{ url('/admin/draft') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -30,29 +30,29 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Actions</th>
+                                        <th>#</th><th>Water Need Qty</th><th>Purpose</th><th>Budget</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($service as $item)
+                                @foreach($draft as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->water_need_qty }}</td><td>{{ $item->purpose }}</td><td>{{ $item->budget }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/service/' . $item->id) }}" title="View Service"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/admin/service/' . $item->id . '/edit') }}" title="Edit Service"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/admin/draft/' . $item->id) }}" title="View Draft"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                            <a href="{{ url('/admin/draft/' . $item->id . '/edit') }}" title="Edit Draft"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                                            <form method="POST" action="{{ url('/admin/service' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                            <form method="POST" action="{{ url('/admin/draft' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Service" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Draft" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $service->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $draft->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>
