@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Technology;
+use App\Service;
 use Illuminate\Http\Request;
 
 class TechnologyController extends Controller
@@ -40,7 +41,8 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        return view('backend.technology.create');
+        $service = Service::all();
+        return view('backend.technology.create', compact('service'));
     }
 
     /**
@@ -83,9 +85,10 @@ class TechnologyController extends Controller
      */
     public function edit($id)
     {
+        $service = Service::all();
         $technology = Technology::findOrFail($id);
 
-        return view('backend.technology.edit', compact('technology'));
+        return view('backend.technology.edit', compact('technology', 'service'));
     }
 
     /**
@@ -119,5 +122,16 @@ class TechnologyController extends Controller
         Technology::destroy($id);
 
         return redirect('admin/technology')->with('flash_message', 'Technology deleted!');
+    }
+
+    public function dataAjaxTechnology(Request $request) {
+        $data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data = Technology::where('service','=',"$search")->get();
+        }
+
+        return response()->json($data);
     }
 }

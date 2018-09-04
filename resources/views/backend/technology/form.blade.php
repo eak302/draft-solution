@@ -19,6 +19,16 @@
     {!! $errors->first('equipment', '<p class="help-block">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('service') ? 'has-error' : ''}}">
+    <label for="service" class="control-label">{{ 'Service' }}</label>
+    <select name="service" id="service" class="form-control">
+        @foreach ($service as $item)
+            <option value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
+    </select>
+    {!! $errors->first('service', '<p class="help-block">:message</p>') !!}
+</div>
+
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

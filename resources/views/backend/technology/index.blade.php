@@ -30,14 +30,22 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Picture</th><th>Video</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Picture</th>
+                                        <th>Video</th>
+                                        <th>Service</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($technology as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->picture }}</td><td>{{ $item->video }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->picture }}</td>
+                                        <td>{{ $item->video }}</td>
+                                        <td>{{ $item->service }}</td>
                                         <td>
                                             <a href="{{ url('/admin/technology/' . $item->id) }}" title="View Technology"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/technology/' . $item->id . '/edit') }}" title="Edit Technology"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

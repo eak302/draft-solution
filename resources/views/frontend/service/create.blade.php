@@ -4,6 +4,7 @@
     เลือกประเภทบริการ/เทคโนโลยี
 @endsection
 @section('content')
+
     <div class="container">
         <div class="row">
             {{-- @include('admin.sidebar') --}}
@@ -31,10 +32,12 @@
                             <div class="btn-group btn-group-lg" data-toggle="buttons">
                                 @foreach ($service as $item)
                                 <label class="btn btn-primary btn-flat">
-                                    <input type="radio" name="name" id="name-{{ $item->id }}"> {{ $item->name or ''}}
+                                    <input type="radio" name="name" id="name-{{ $item->id }}" value="{{ $item->id or ''}}"> {{ $item->name or ''}}
                                 </label>
                                 @endforeach
                             </div>
+
+                            <div id="box-technology"></div>
 
                         </form>
 
@@ -43,4 +46,21 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+    $(function () {
+        $("input[type='radio']").change(function () {
+            $.ajax({
+                url: "{{ route('ajax-customer') }}",
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    
+                },
+                cache: true
+            });
+        });
+    });
+
+</script>
 @endsection
