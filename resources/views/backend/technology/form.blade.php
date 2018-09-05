@@ -5,7 +5,7 @@
 </div>
 <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
     <label for="picture" class="control-label">{{ 'Picture' }}</label>
-    <input class="form-control" name="picture" type="text" id="picture" value="{{ $technology->picture or ''}}" >
+    <input class="form-control" name="picture" type="file" id="picture" value="{{ $technology->picture or ''}}" >
     {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('video') ? 'has-error' : ''}}">

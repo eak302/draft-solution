@@ -4,29 +4,27 @@ namespace App\Http\Controllers\Technology;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Technology;
 use App\Service;
 use Illuminate\Http\Request;
 
-class TechnologyController extends Controller
-{
+class TechnologyController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
             $technology = Technology::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('picture', 'LIKE', "%$keyword%")
-                ->orWhere('video', 'LIKE', "%$keyword%")
-                ->orWhere('equipment', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                            ->orWhere('picture', 'LIKE', "%$keyword%")
+                            ->orWhere('video', 'LIKE', "%$keyword%")
+                            ->orWhere('equipment', 'LIKE', "%$keyword%")
+                            ->latest()->paginate($perPage);
         } else {
             $technology = Technology::latest()->paginate($perPage);
         }
@@ -39,8 +37,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
-    {
+    public function create() {
         $service = Service::all();
         return view('backend.technology.create', compact('service'));
     }
@@ -52,10 +49,13 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
-    {
-        
-        $requestData = $request->all();
+    public function store(Request $request) {
+        if ($request->hasfile('picture')) {
+            $file = $request->file('picture');
+            $filename = str_slug($request->name).'.'.$file->getClientOriginalExtension();
+            $file->move('uploads/technologies/picture/', $filename);
+            $requestData = $request->all();
+        }
         
         Technology::create($requestData);
 
@@ -69,8 +69,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
-    {
+    public function show($id) {
         $technology = Technology::findOrFail($id);
 
         return view('backend.technology.show', compact('technology'));
@@ -83,8 +82,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $service = Service::all();
         $technology = Technology::findOrFail($id);
 
@@ -99,11 +97,10 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
-    {
-        
+    public function update(Request $request, $id) {
+
         $requestData = $request->all();
-        
+
         $technology = Technology::findOrFail($id);
         $technology->update($requestData);
 
@@ -117,8 +114,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         Technology::destroy($id);
 
         return redirect('admin/technology')->with('flash_message', 'Technology deleted!');
@@ -127,11 +123,12 @@ class TechnologyController extends Controller
     public function dataAjaxTechnology(Request $request) {
         $data = [];
 
-        if($request->has('q')){
+        if ($request->has('q')) {
             $search = $request->q;
-            $data = Technology::where('service','=',"$search")->get();
+            $data = Technology::where('service', '=', "$search")->get();
         }
 
         return response()->json($data);
     }
+
 }
