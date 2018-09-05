@@ -50,16 +50,28 @@ class TechnologyController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request) {
-        if ($request->hasfile('picture')) {
-            $file = $request->file('picture');
-            $filename = str_slug($request->name).'.'.$file->getClientOriginalExtension();
-            $file->move('uploads/technologies/picture/', $filename);
-            $requestData = $request->all();
-        }
-        
-        Technology::create($requestData);
+        $this->validate($request, [
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        return redirect('admin/technology')->with('flash_message', 'Technology added!');
+        $technology = new technology();
+
+        if ($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/technology/picture');
+            $imagePath = $destinationPath . "/" . $name;
+            $picture->move($destinationPath, $name);
+            $technology->picture = $name;
+        }
+
+        $technology->name = $request->get('name');
+        $technology->video = $request->get('video');
+        $technology->equipment = $request->get('equipment');
+        $technology->service = $request->get('service');
+
+        $technology->save();
+        return redirect('/admin/technology');
     }
 
     /**
