@@ -31,9 +31,13 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ route('admin') }}"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-                <li class="treeview">
+            <li><a href="{{ route('admin') }}"><i class="fa fa-link"></i> <span>Home</span></a></li>
+            <li>
+                <a href="{{ route('create-form', ['form' => 'home']) }}">
+                    <i class="fa fa-link"></i> <span>Create draft</span>
+                </a>
+            </li>
+            <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Customer</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>

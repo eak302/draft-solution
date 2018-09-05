@@ -21,6 +21,8 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="{{ asset('dist/css/skins/skin-blue.min.css') }}">
+    {{-- Style --}}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <!-- jQuery 3 -->
     <script src="{{ asset ('/bower_components/jquery/dist/jquery.min.js') }}"></script>

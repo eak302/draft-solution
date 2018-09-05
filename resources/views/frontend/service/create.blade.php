@@ -1,9 +1,9 @@
-@extends('layouts.main')
+@extends('frontend')
 
-@section('page-title')
+@section('frontend-title')
     เลือกประเภทบริการ/เทคโนโลยี
 @endsection
-@section('content')
+@section('frontend-content')
 
     <div class="container">
         <div class="row">
@@ -13,31 +13,33 @@
                 <div class="card">
                     {{-- <div class="card-header">Create New Service</div> --}}
                     <div class="card-body">
-                        {{-- <a href="{{ url('/admin/service') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-                        <br />
-                        <br /> --}}
-
-                        @if ($errors->any())
-                            <ul class="alert alert-danger">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-
                         <form method="POST" action="{{ url('/admin/service') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            {{-- @include ('backend.service.form', ['formMode' => 'create']) --}}
-                            <div class="btn-group btn-group-lg" data-toggle="buttons">
-                                @foreach ($service as $item)
-                                <label class="btn btn-primary btn-flat">
-                                    <input type="radio" name="name" id="name-{{ $item->id }}" value="{{ $item->id or ''}}"> {{ $item->name or ''}}
-                                </label>
-                                @endforeach
+                            <div class="form-group text-center">
+                                <div class="btn-group btn-group-lg" data-toggle="buttons">
+                                    @foreach ($service as $item)
+                                    <label class="btn btn-primary btn-flat">
+                                        <input type="radio" name="name" id="name-{{ $item->id }}" value="{{ $item->id or ''}}"> {{ $item->name or ''}}
+                                    </label>
+                                    @endforeach
+                                </div>
                             </div>
 
                             <div id="box-technology"></div>
+                            <div class="form-group">
+                                <a href="{{ route('create-form', ['form' => 'customer']) }}" class="btn btn-danger">
+                                    {{ 'ย้อนกลับ' }}
+                                </a>
+                                <input class="btn btn-primary" type="submit" value="{{ 'ถัดไป' }}" disabled>
+                            </div>
+                            @if ($errors->any())
+                                <ul class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
 
                         </form>
 

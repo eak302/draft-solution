@@ -23,8 +23,11 @@ Route::middleware(['auth'])->group(function () {
     })->name('admin');
 
     // frontend
-    Route::get('/customer-create', 'Customer\\CustomerController@createCustomer')->name('customer-create');
-    Route::post('/customer-create', 'Customer\\CustomerController@postCreateCustomer')->name('customer-post-create');
+    Route::get('/create/{form}', 'FrontendController@index')->name('create-form');
+    Route::get('/session-clear', 'FrontendController@clear');
+    Route::post('/customer-create', 'FrontendController@postCreateCustomer')->name('customer-post-create');
+
+    Route::get('/customer-create', 'FrontendController@createCustomer')->name('customer-create');
     Route::get('/admin/ajax-customer', 'Customer\\CustomerController@dataAjaxCustomer')->name('ajax-customer');
 
     Route::get('/service-create', 'Service\\ServiceController@createService')->name('service-create');
