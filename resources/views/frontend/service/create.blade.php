@@ -26,7 +26,11 @@
                                 </div>
                             </div>
 
-                            <div id="box-technology"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="box-technology"></div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <a href="{{ route('create-form', ['form' => 'customer']) }}" class="btn btn-danger">
                                     {{ 'ย้อนกลับ' }}
@@ -42,22 +46,31 @@
                             @endif
 
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script type="text/javascript">
     $(function () {
         $("input[type='radio']").change(function () {
             $.ajax({
-                url: "{{ route('ajax-customer') }}",
+                url: "{{ route('ajax-technology') }}",
                 type: 'get',
+                data: { q: $(this).val() },
                 dataType: 'json',
                 success: function (data) {
-                    
+                    var content = '';
+                    for (var i = 0; i < data.length; i++) {
+                        content += '<div class="col-md-6">' +
+                                        '<div class="form-group">' +
+                                            '<input type="checkbox" name="technology_id[]" id="technology-id-' + data[i]['id'] + '" value="' + data[i]['id'] + '">' +
+                                            ' <label for="technology-id-' + data[i]['id'] + '" class="control-label">' + data[i]['name'] + '</label>' +
+                                        '</div>' +
+                                        '<img src="{{ asset('uploads/technology/picture') }}/' + data[i]['picture'] + '" class="img-responsive" alt="">' +
+                                    '</div>';
+                    }
+                    $('#box-technology').html(content);
                 },
                 cache: true
             });

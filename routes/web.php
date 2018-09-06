@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Auth::routes();
 
@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/customer', 'Customer\\CustomerController', ['as' => 'customer']);
 
     Route::resource('admin/technology', 'Technology\\TechnologyController', ['as' => 'technology']);
+    Route::get('/admin/ajax-technology', 'Technology\\TechnologyController@dataAjaxTechnology')->name('ajax-technology');
+
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
 
     Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);

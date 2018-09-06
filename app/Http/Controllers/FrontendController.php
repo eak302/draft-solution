@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\Service;
 use App\Http\Controllers\Controller;
+use App\Service;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -22,19 +22,20 @@ class FrontendController extends Controller
                 'link' => 'service',
                 'name' => 'เลือกประเภทบริการ/เทคโนโลยี',
             ], /*[
-                'link' => 'technology',
-                'name' => 'สรุปรายละเอียด',
-            ], [
-                'link' => 'success',
-                'name' => 'บันทึก ' . config('app.name'),
-            ],*/
+        'link' => 'technology',
+        'name' => 'สรุปรายละเอียด',
+        ], [
+        'link' => 'success',
+        'name' => 'บันทึก ' . config('app.name'),
+        ],*/
         ];
-        $draft = $request->session()->get('draft');
         if ($form == 'home') {
             $request->session()->forget('draft');
+            $draft = $request->session()->get('draft');
             return view($form, compact(['step_form', 'draft']));
         }
         $service = Service::all();
+        $draft = $request->session()->get('draft');
         return view("frontend.$form.create", compact(['step_form', 'draft', 'service']));
     }
 
@@ -57,15 +58,13 @@ class FrontendController extends Controller
             $draft = new Customer();
             $draft->fill($validatedData);
             $draft->customer_type = $request->input('customer_type');
-            // $draft->customer_name_old = $request->input('customer_name_old');
-            $request->session()->put('draft', $draft);
         } else {
             $draft = $request->session()->get('draft');
             $draft->fill($validatedData);
             $draft->customer_type = $request->input('customer_type');
-            // $draft->customer_name_old = $request->input('customer_name_old');
-            $request->session()->put('draft', $draft);
         }
+        $draft->draft_level = 1;
+        $request->session()->put('draft', $draft);
         return redirect('/create/service');
 
     }

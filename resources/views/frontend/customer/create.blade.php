@@ -27,6 +27,7 @@
                                 <input type="radio" name="customer_type" id="radio-customer-old" value="customer-old" {{ (isset($draft->customer_type) && $draft->customer_type == 'customer-old') ? "checked" : "" }}>
                                 <label for="radio-customer-old" class="control-label">{{ 'ลูกค้าปัจจุบัน' }}</label>
                             </div>
+                            
                             <div id="type-old">
                                 <div class="form-group {{ $errors->has('customer_name_old') ? 'has-error' : ''}}">
                                     <select class="form-control" name="customer_name_old" id="item-customer" {{ $disabled_old }}>
@@ -69,15 +70,19 @@
             </div>
         </div>
     </div>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $("input[name='customer_type']").click(function () {
                 if ($(this).val() == 'customer-old') {
                     $("#type-old select").prop('disabled', false);
+                    $("#type-new input[type='text']").val('');
                     $("#type-new input[type='text']").prop('disabled', true);
                 } else {
+                    $("#type-old select").find('option')
+                        .remove()
+                        .end()
+                        .append('<option value=""></option>')
+                        .val('');
                     $("#type-old select").prop('disabled', true);
                     $("#type-new input[type='text']").prop('disabled', false);
                 }
