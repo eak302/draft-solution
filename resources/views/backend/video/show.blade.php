@@ -27,7 +27,7 @@
                                     <tr>
                                         <th>ID</th><td>{{ $video->id }}</td>
                                     </tr>
-                                    <tr><th> Video Name </th><td> {{ $video->video_name }} </td></tr><tr><th> Video Url </th><td> {{ $video->video_url }} </td></tr>
+                                    <tr><th> Video Name </th><td> {{ $video->video_name }} </td></tr><tr><th> Video File </th><td> {{ $video->video_file }} </td></tr><tr><th> Video Url </th><td> {{ $video->video_url }} </td></tr>
                                 </tbody>
                             </table>
                         </div>

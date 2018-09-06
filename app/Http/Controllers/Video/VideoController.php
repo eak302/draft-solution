@@ -4,25 +4,27 @@ namespace App\Http\Controllers\Video;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Video;
 use Illuminate\Http\Request;
 
-class VideoController extends Controller {
-
+class VideoController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
             $video = Video::where('video_name', 'LIKE', "%$keyword%")
-                            ->orWhere('video_type', 'LIKE', "%$keyword%")
-                            ->orWhere('video_url', 'LIKE', "%$keyword%")
-                            ->latest()->paginate($perPage);
+                ->orWhere('video_file', 'LIKE', "%$keyword%")
+                ->orWhere('video_url', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
         } else {
             $video = Video::latest()->paginate($perPage);
         }
@@ -35,7 +37,8 @@ class VideoController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function create() {
+    public function create()
+    {
         return view('backend.video.create');
     }
 
@@ -47,12 +50,28 @@ class VideoController extends Controller {
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request) {
+        $this->validate($request, [
+            'video_file' => 'required|mimes:mp4,mov,ogg,flv,mov,avi,wmv|max:20000',
+        ]);
 
-        $requestData = $request->all();
+        $video = new video();
 
-        Video::create($requestData);
+        if ($request->hasFile('video_file')) {
+            $video_file = $request->file('video_file');
+            $name = str_slug($request->video_name) . '.' . $video_file->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads/video/file');
+            $videoPath = $destinationPath . "/" . $name;
+            $video_file->move($destinationPath, $name);
+            $video->video_file = $name;
+        }
 
-        return redirect('admin/video')->with('flash_message', 'Video added!');
+        $video->video_name = $request->get('video_name');
+        $video->video_type = $request->get('video_type');
+        $video->video_file = $request->get($destinationPath.'video_name');
+        $video->video_url = $request->get('video_url');
+
+        $video->save();
+        return redirect('/admin/video');
     }
 
     /**
@@ -62,7 +81,8 @@ class VideoController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function show($id) {
+    public function show($id)
+    {
         $video = Video::findOrFail($id);
 
         return view('backend.video.show', compact('video'));
@@ -75,7 +95,8 @@ class VideoController extends Controller {
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         $video = Video::findOrFail($id);
 
         return view('backend.video.edit', compact('video'));
@@ -89,10 +110,11 @@ class VideoController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id) {
-
+    public function update(Request $request, $id)
+    {
+        
         $requestData = $request->all();
-
+        
         $video = Video::findOrFail($id);
         $video->update($requestData);
 
@@ -106,10 +128,10 @@ class VideoController extends Controller {
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         Video::destroy($id);
 
         return redirect('admin/video')->with('flash_message', 'Video deleted!');
     }
-
 }

@@ -25,7 +25,7 @@ class Video extends Model
      *
      * @var array
      */
-    protected $fillable = ['video_name', 'video_type', 'video_url'];
+    protected $fillable = ['video_name', 'video_type', 'video_file', 'video_url'];
 
     
 }

@@ -42,9 +42,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
 
     Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);
+    
+    Route::resource('admin/video', 'Video\\VideoController', ['as' => 'video']);
 
     Route::resource('admin/draft', 'Draft\\DraftController', ['as' => 'draft']);
 
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
-Route::resource('admin/video', 'Video\\VideoController');

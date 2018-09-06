@@ -17,6 +17,7 @@ class CreateVideosTable extends Migration
             $table->timestamps();
             $table->string('video_name')->nullable();
             $table->enum('video_type',['file','url'])->nullable();
+            $table->string('video_file')->nullable();
             $table->string('video_url')->nullable();
             });
     }
