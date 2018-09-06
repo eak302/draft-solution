@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Technology;
 use App\Http\Controllers\Controller;
 use App\Service;
 use App\Technology;
+use App\Equipment;
+use App\Video;
 use Illuminate\Http\Request;
 
 class TechnologyController extends Controller
@@ -41,7 +43,9 @@ class TechnologyController extends Controller
     public function create()
     {
         $service = Service::all();
-        return view('backend.technology.create', compact('service'));
+        $equipment = Equipment::all();
+        $video = Video::all();
+        return view('backend.technology.create', compact('service','video','equipment'));
     }
 
     /**
@@ -101,9 +105,11 @@ class TechnologyController extends Controller
     public function edit($id)
     {
         $service = Service::all();
+        $video = Video::all();
+        $equipment = Equipment::all();
         $technology = Technology::findOrFail($id);
 
-        return view('backend.technology.edit', compact('technology', 'service'));
+        return view('backend.technology.edit', compact('technology', 'service', 'video', 'equipment'));
     }
 
     /**
@@ -144,7 +150,7 @@ class TechnologyController extends Controller
         $data = [];
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Technology::where('service', '=', "$search")->get();
+            $data = Technology::where('service','video', '=', "$search")->get();
         }
 
         return response()->json($data);

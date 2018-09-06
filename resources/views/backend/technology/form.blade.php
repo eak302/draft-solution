@@ -10,12 +10,20 @@
 </div>
 <div class="form-group {{ $errors->has('video') ? 'has-error' : ''}}">
     <label for="video" class="control-label">{{ 'Video' }}</label>
-    <input class="form-control" name="video" type="text" id="video" value="{{ $technology->video or ''}}" >
-    {!! $errors->first('video', '<p class="help-block">:message</p>') !!}
+    <select name="video" id="service" class="form-control">
+        @foreach ($video as $item)
+            <option value="{{ $item->id }}">{{ $item->video_name }}</option>
+        @endforeach
+    </select>
+    {!! $errors->first('service', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('equipment') ? 'has-error' : ''}}">
     <label for="equipment" class="control-label">{{ 'Equipment' }}</label>
-    <input class="form-control" name="equipment" type="text" id="equipment" value="{{ $technology->equipment or ''}}" >
+    <select name="equipment" id="equipment" class="form-control">
+        @foreach ($equipment as $item)
+            <option value="{{ $item->id }}">{{ $item->name }}</option>
+        @endforeach
+    </select>
     {!! $errors->first('equipment', '<p class="help-block">:message</p>') !!}
 </div>
 
