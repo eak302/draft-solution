@@ -1,9 +1,11 @@
 .stepwizard {
-    margin: 10px;
+    margin: 20px auto;
+    min-height: 200px;
 }
 
 .stepwizard-step p {
     margin-top: 10px;
+    color: #fff;
 }
 
 .stepwizard-row {
@@ -14,6 +16,7 @@
     display: table;
     width: 100%;
     position: relative;
+    margin: 0px;
 }
 
 .stepwizard-step button[disabled] {
@@ -29,7 +32,6 @@
     width: 100%;
     height: 1px;
     background-color: #ccc;
-    z-order: 0;
 
 }
 
@@ -47,4 +49,72 @@
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+}
+
+/* edit admin-lte */
+.content-wrapper {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.skin-blue .wrapper,
+.skin-blue .main-sidebar,
+.skin-blue .left-side {
+    background-color: rgba(34, 45, 50, 0.7);
+}
+
+.skin-blue .main-header .navbar,
+.skin-blue .main-header .logo {
+    background-color: transparent;
+}
+
+.navbar .navbar-logo {
+    float: left;
+    max-height: 35px;
+    margin: 5px;
+}
+
+.bg-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 300px;
+    background: #075bc6 url('../img/bg-header.png'), url('../img/bg-header-bottom.png'); /* For browsers that do not support gradients */    
+    background: url('../img/bg-header.png'), url('../img/bg-header-bottom.png'), -webkit-linear-gradient(left, #075bc6, #0487b8, #00b5aa 95%); /* For Safari 5.1 to 6.0 */
+    background: url('../img/bg-header.png'), url('../img/bg-header-bottom.png'), -o-linear-gradient(right, #075bc6, #0487b8, #00b5aa 95%); /* For Opera 11.1 to 12.0 */
+    background: url('../img/bg-header.png'), url('../img/bg-header-bottom.png'), -moz-linear-gradient(right, #075bc6, #0487b8, #00b5aa 95%); /* For Firefox 3.6 to 15 */
+    background: url('../img/bg-header.png'), url('../img/bg-header-bottom.png'), linear-gradient(to right, #075bc6, #0487b8, #00b5aa 95%); /* Standard syntax (must be last) */
+    background-position: center, bottom;
+    background-repeat: no-repeat;
+    background-size: cover, 100% 40%;
+    z-index: 0;
+}
+
+.content-header {
+    margin-bottom: 30px;
+}
+
+.content-header > .breadcrumb {
+    float: left;
+    padding: 7px 5px;
+    left: 10px;
+}
+
+.content-header > .breadcrumb > li.home {
+    font-weight: bold;
+}
+
+.main-footer {
+    padding: 5px;
+    color: #fff;
+    border: none;
+    background: #075bc6; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left, #075bc6, #0487b8, #00b5aa 95%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #075bc6, #0487b8, #00b5aa 95%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #075bc6, #0487b8, #00b5aa 95%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #075bc6, #0487b8, #00b5aa 95%); /* Standard syntax (must be last) */
+}
+
+.text-white {
+    color: #fff !important;
 }

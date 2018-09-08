@@ -155,7 +155,7 @@ class TechnologyController extends Controller
         $data = [];
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Technology::where('service', 'video', '=', "$search")->get();
+            $data = Technology::where('service', '=', "$search")->get();
         }
 
         return response()->json($data);

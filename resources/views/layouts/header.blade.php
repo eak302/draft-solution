@@ -1,3 +1,4 @@
+<div class="bg-header"></div>
 <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -13,6 +14,7 @@
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        <img src="{{ asset('img/logo-white.png') }}" alt="" class="navbar-logo img-responsive">
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">

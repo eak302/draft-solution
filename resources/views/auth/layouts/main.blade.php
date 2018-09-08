@@ -18,6 +18,9 @@
 
         <!-- Custom styles for this template -->
         <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+        <!-- Google Font -->
+        <link rel="stylesheet"  href="{{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic') }}">
     </head>
 
     <body>

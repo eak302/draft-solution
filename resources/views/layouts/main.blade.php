@@ -81,26 +81,11 @@
         
         <!-- /.content-wrapper -->
         <div class="content-wrapper" style="min-height: 637px;">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-            <h1>
-                @yield('page-title')
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#">{{ config('app.name') }}</a></li>
-            </ol>
-            </section>
-            <br>
-            {{-- <div class="container"> --}}
-                <div class="box" style="margin: 10px;">
-                    <div class="box-body">
-                        @yield('content')
-                    </div>
-                </div>
-            {{-- </div> --}}
+            @yield('content')
         </div>
         
         <!-- Main Footer -->
+        @include('layouts.footer')
         <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>

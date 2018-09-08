@@ -67,7 +67,7 @@
                                             '<input type="checkbox" name="technology_id[]" id="technology-id-' + data[i]['id'] + '" value="' + data[i]['id'] + '">' +
                                             ' <label for="technology-id-' + data[i]['id'] + '" class="control-label">' + data[i]['name'] + '</label>' +
                                         '</div>' +
-                                        '<img src="{{ asset('uploads/technology/picture') }}/' + data[i]['picture'] + '" class="img-responsive" alt="">' +
+                                        '<img src="{{ asset('storage/uploads/technology/picture') }}/' + data[i]['picture'] + '" class="img-responsive" alt="">' +
                                     '</div>';
                     }
                     $('#box-technology').html(content);

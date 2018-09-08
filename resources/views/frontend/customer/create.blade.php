@@ -4,7 +4,6 @@
     ข้อมูลลูกค้า
 @endsection
 @section('frontend-content')
-    <div class="container">
         <div class="row">
             {{-- @include('admin.sidebar') --}}
             <div class="col-md-6">
@@ -69,7 +68,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <script type="text/javascript">
         $(function () {
             $("input[name='customer_type']").click(function () {
