@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Video;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -49,25 +47,25 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request) {
-        $this->validate($request, [
-            'video_file' => 'required|mimes:mp4,mov,ogg,flv,mov,avi,wmv|max:20000',
-        ]);
-
+    public function store(Request $request)
+    {
         $video = new video();
 
         if ($request->hasFile('video_file')) {
+            $this->validate($request, [
+                'video_file' => 'required|mimes:mp4,mov,ogg,flv,mov,avi,wmv|max:20000',
+            ]);
             $video_file = $request->file('video_file');
             $name = str_slug($request->video_name) . '.' . $video_file->getClientOriginalExtension();
-            $destinationPath = public_path('/uploads/video/file');
+            $destinationPath = storage_path('/uploads/video/file');
             $videoPath = $destinationPath . "/" . $name;
             $video_file->move($destinationPath, $name);
             $video->video_file = $name;
+            $video->video_file = $request->get($destinationPath . 'video_name');
         }
 
         $video->video_name = $request->get('video_name');
         $video->video_type = $request->get('video_type');
-        $video->video_file = $request->get($destinationPath.'video_name');
         $video->video_url = $request->get('video_url');
 
         $video->save();
@@ -112,9 +110,9 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $video = Video::findOrFail($id);
         $video->update($requestData);
 

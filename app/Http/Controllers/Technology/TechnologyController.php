@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Technology;
 
+use App\Equipment;
 use App\Http\Controllers\Controller;
 use App\Service;
 use App\Technology;
-use App\Equipment;
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -45,7 +45,7 @@ class TechnologyController extends Controller
         $service = Service::all();
         $equipment = Equipment::all();
         $video = Video::all();
-        return view('backend.technology.create', compact('service','video','equipment'));
+        return view('backend.technology.create', compact('service', 'video', 'equipment'));
     }
 
     /**
@@ -58,18 +58,23 @@ class TechnologyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+            'picture' => 'required|array|max:2048',
+            'picture.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $technology = new technology();
 
-        if ($request->hasFile('picture')) {
-            $picture = $request->file('picture');
-            $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-            $destinationPath = public_path('/uploads/technology/picture');
-            $imagePath = $destinationPath . "/" . $name;
-            $picture->move($destinationPath, $name);
-            $technology->picture = $name;
+        if (count($request->file('picture')) > 0) {
+            $names = [];
+            foreach ($request->file('picture') as $picture) {
+                $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
+                $destinationPath = storage_path('/uploads/technology/picture');
+                $imagePath = $destinationPath . "/" . $name;
+                $picture->move($destinationPath, $name);
+                $names[] = $name;
+            }
+            $technology->picture = implode(",", $names);
         }
 
         $technology->name = $request->get('name');
@@ -150,7 +155,7 @@ class TechnologyController extends Controller
         $data = [];
         if ($request->has('q')) {
             $search = $request->q;
-            $data = Technology::where('service','video', '=', "$search")->get();
+            $data = Technology::where('service', 'video', '=', "$search")->get();
         }
 
         return response()->json($data);
