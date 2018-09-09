@@ -49,3 +49,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
+
+Route::resource('admin/equipment-assignment', 'EquipmentAssignment\\equipment-assignmentController');
