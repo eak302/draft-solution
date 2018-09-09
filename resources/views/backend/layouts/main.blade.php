@@ -34,7 +34,7 @@
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="{{ asset('dist/css/skins/skin-blue.min.css') }}">
     {{-- Style --}}
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> --}}
 
     <!-- jQuery 3 -->
     <script src="{{ asset ('/bower_components/jquery/dist/jquery.min.js') }}"></script>
@@ -73,19 +73,35 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <!-- Main Header -->
-        @include('layouts.header')
+        @include('backend.layouts.header')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
+        @include('backend.layouts.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         
         <!-- /.content-wrapper -->
         <div class="content-wrapper" style="min-height: 637px;">
-            @yield('content')
+            <section class="content-header">
+                <h1>
+                    @yield('page-title')
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">{{ Request::segment(2) }}</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="box">
+                    <div class="box-header"></div>
+                    <div class="box-body">
+                        @yield('content')
+                    </div>
+                </div>
+            </section>
         </div>
         
         <!-- Main Footer -->
-        @include('layouts.footer')
+        {{-- @include('layouts.footer') --}}
         <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>

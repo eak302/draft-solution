@@ -1,4 +1,4 @@
-@extends('frontend')
+@extends('frontend.frontend')
 
 @section('frontend-title')
     เลือกประเภทบริการ/เทคโนโลยี

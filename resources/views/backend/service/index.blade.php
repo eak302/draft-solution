@@ -1,7 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
+@section('page-title')
+    ข้อมูลบริการ
+@endsection
 @section('content')
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="row">
             {{-- @include('admin.sidebar') --}}
 
@@ -59,5 +62,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 @endsection

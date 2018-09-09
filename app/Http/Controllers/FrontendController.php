@@ -32,7 +32,7 @@ class FrontendController extends Controller
         if ($form == 'home') {
             $request->session()->forget('draft');
             $draft = $request->session()->get('draft');
-            return view($form, compact(['step_form', 'draft']));
+            return view("frontend.$form", compact(['step_form', 'draft']));
         }
         $service = Service::all();
         $draft = $request->session()->get('draft');

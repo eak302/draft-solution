@@ -1,7 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
+@section('page-title')
+    ข้อมูลบริการ
+@endsection
 @section('content')
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="row">
             {{-- @include('admin.sidebar') --}}
 
@@ -21,7 +24,7 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/service') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/service') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             @include ('backend.service.form', ['formMode' => 'create'])
@@ -32,5 +35,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 @endsection

@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('page-title')
-ข้อมูลวีดีโอ
+    ข้อมูลวีดีโอ
 @endsection
 @section('content')
 <script>

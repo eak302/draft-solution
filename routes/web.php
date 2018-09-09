@@ -19,7 +19,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::get('admin', function () {
-        return view('layouts.main');
+        return view('backend.layouts.main');
     })->name('admin');
 
     // frontend
@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
 
     Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);
-    
+
     Route::resource('admin/video', 'Video\\VideoController', ['as' => 'video']);
 
     Route::resource('admin/draft', 'Draft\\DraftController', ['as' => 'draft']);
