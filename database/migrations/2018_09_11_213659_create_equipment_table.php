@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateEquipmentTable extends Migration
 {
@@ -17,8 +18,7 @@ class CreateEquipmentTable extends Migration
             $table->timestamps();
             $table->string('name')->nullable();
             $table->string('detail')->nullable();
-            $table->integer('qty')->nullable();
-            $table->string('unit')->nullable();
+            $table->string('picture')->nullable();
             });
     }
 
@@ -29,6 +29,6 @@ class CreateEquipmentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('equipment');
+        Schema::dropIfExists('equipment');
     }
 }

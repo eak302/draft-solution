@@ -15,7 +15,10 @@ class admin {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if (Auth::check() && Auth::user()->role == 'admin') {
+        if (auth()->guest()) {
+            return redirect()->route('login');
+        }
+        else if(Auth::check() && Auth::user()->role == 'admin') {
             return $next($request);
         } elseif (Auth::check() && Auth::user()->role == 'saleadmin') {
             return redirect('/index.php');

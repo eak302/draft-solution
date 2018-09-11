@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEquipmentAssignment extends Migration
+class CreateEquipmentAssignmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,10 +16,8 @@ class CreateTableEquipmentAssignment extends Migration
         Schema::create('equipment-assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('technology_name')->nullable();
-            $table->string('equipment_name')->nullable();
-            $table->string('equipment_picture')->nullable();
-            $table->string('equipment_detail')->nullable();
+            $table->integer('technology_id')->length(10);
+            $table->integer('equipment_id')->length(10);
             $table->string('layer')->nullable();
             });
     }
@@ -31,6 +29,6 @@ class CreateTableEquipmentAssignment extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('equipment_assignment');
     }
 }

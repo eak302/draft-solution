@@ -16,11 +16,14 @@ class sale {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if (Auth::check() && Auth::user()->role == 'sale') {
-            return redirect('/index.php');
-        } elseif (Auth::check() && Auth::user()->role == 'admin') {
+        if (auth()->guest()) {
+            return redirect()->route('login');
+        }
+        else if (Auth::check() && Auth::user()->role == 'sale') {
+            return redirect('/');
+        } else if (Auth::check() && Auth::user()->role == 'admin') {
             return redirect('/admin');
-        } elseif (Auth::check() && Auth::user()->role == 'supervisor') {
+        } else if (Auth::check() && Auth::user()->role == 'supervisor') {
             return redirect('/index.php');
         } else {
             return redirect('/index.php');
