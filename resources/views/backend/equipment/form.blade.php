@@ -8,15 +8,10 @@
     <input class="form-control" name="detail" type="text" id="detail" value="{{ $equipment->detail or ''}}" >
     {!! $errors->first('detail', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('qty') ? 'has-error' : ''}}">
-    <label for="qty" class="control-label">{{ 'Qty' }}</label>
-    <input class="form-control" name="qty" type="number" id="qty" value="{{ $equipment->qty or ''}}" >
-    {!! $errors->first('qty', '<p class="help-block">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('unit') ? 'has-error' : ''}}">
-    <label for="unit" class="control-label">{{ 'Unit' }}</label>
-    <input class="form-control" name="unit" type="text" id="unit" value="{{ $equipment->unit or ''}}" >
-    {!! $errors->first('unit', '<p class="help-block">:message</p>') !!}
+<div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
+    <label for="picture" class="control-label">{{ 'Picture' }}</label>
+    <input class="form-control" name="Picture" type="file" id="picture" value="{{ $equipment->picture or ''}}" >
+        {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
 </div>
 
 

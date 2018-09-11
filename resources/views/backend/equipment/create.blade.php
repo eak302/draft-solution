@@ -1,5 +1,8 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
+@section('page-title')
+    ข้อมูลอุปกรณ์
+@endsection
 @section('content')
     <div class="container">
         <div class="row">

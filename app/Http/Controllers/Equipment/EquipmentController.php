@@ -23,8 +23,7 @@ class EquipmentController extends Controller
         if (!empty($keyword)) {
             $equipment = Equipment::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('detail', 'LIKE', "%$keyword%")
-                ->orWhere('qty', 'LIKE', "%$keyword%")
-                ->orWhere('unit', 'LIKE', "%$keyword%")
+                ->orWhere('picture', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $equipment = Equipment::latest()->paginate($perPage);
