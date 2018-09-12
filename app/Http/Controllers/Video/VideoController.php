@@ -57,11 +57,13 @@ class VideoController extends Controller
             ]);
             $video_file = $request->file('video_file');
             $name = str_slug($request->video_name) . '.' . $video_file->getClientOriginalExtension();
-            $destinationPath = storage_path('/uploads/video/file');
-            $videoPath = $destinationPath . "/" . $name;
-            $video_file->move($destinationPath, $name);
+//            $destinationPath = storage_path('/public/uploads/video/file');
+//            $videoPath = $destinationPath . "/" . $name;
+//            $video_file->move($destinationPath, $name);
+//            $video->video_file = $name;
+//            $video->video_file = $request->get($destinationPath . 'video_name');
             $video->video_file = $name;
-            $video->video_file = $request->get($destinationPath . 'video_name');
+            $request->video_file->storeAs('public/uploads/video/file/', $name);
         }
 
         $video->video_name = $request->get('video_name');

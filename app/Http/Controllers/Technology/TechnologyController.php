@@ -65,16 +65,19 @@ class TechnologyController extends Controller
 
         $technology = new technology();
 
-        if (count($request->file('picture')) > 0) {
-            $names = [];
-            foreach ($request->file('picture') as $picture) {
-                $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-                $destinationPath = storage_path('/uploads/technology/picture');
-                $imagePath = $destinationPath . "/" . $name;
-                $picture->move($destinationPath, $name);
-                $names[] = $name;
-            }
-            $technology->picture = implode(",", $names);
+        if ($request->hasFile('picture')) {
+            // $names = [];
+            // foreach ($request->file('picture') as $picture) {
+            $picture = $request->file('picture');
+            $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
+//            $destinationPath = storage_path('/uploads/technology/picture');
+//            $imagePath = $destinationPath . "/" . $name;
+//            $picture->move($destinationPath, $name);
+            // $names[] = $name;
+            // }
+            // $technology->picture = implode(",", $names);
+            $technology->picture = $name;
+            $request->picture->storeAs('public/uploads/technology/picture/', $name);
         }
 
         $technology->name = $request->get('name');

@@ -8,9 +8,9 @@
     <label for="picture" class="control-label">{{ 'Picture' }}</label>
     {{-- <select name="picture" id="picture" class="form-control"> --}}
         @foreach ($picture as $item)
-            {{-- <option style="background-image:url({{ asset('storage/uploads/technology/picture/' . $item->picture) }});" value="{{ $item->id }}">{{ $item->name }}</option> --}}
+            {{-- <option style="background-image:url({{ asset('storage/app/public/uploads/technology/picture/' . $item->picture) }});" value="{{ $item->id }}">{{ $item->name }}</option> --}}
             {{-- <option style="background-image:url(apple.png);">Apple</option> --}}
-            <img src="{{ asset('storage/uploads/technology/picture/' . $item->picture) }}" alt="">
+            <img src="{{ asset('storage/app/public/uploads/technology/picture/' . $item->picture) }}" alt="">
         @endforeach
     {{-- </select> --}}
     {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
