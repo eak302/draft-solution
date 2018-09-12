@@ -31,9 +31,9 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="{{ route('admin') }}"><i class="fa fa-link"></i> <span>Home</span></a></li>
+            <li><a href="{{ route('admin') }}"><i class="fa fa-home"></i> <span>Home</span></a></li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Customer</span>
+                <a href="#"><i class="fa fa-user"></i> <span>Customer</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -44,7 +44,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Service</span>
+                <a href="#"><i class="fa fa-cog"></i> <span>Service</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -55,7 +55,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Technology</span>
+                <a href="#"><i class="fa fa-cogs"></i> <span>Technology</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -66,7 +66,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Video</span>
+                <a href="#"><i class="fa fa-video-camera"></i> <span>Video</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>

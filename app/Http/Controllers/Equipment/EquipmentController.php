@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Equipment;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Equipment;
@@ -52,11 +51,26 @@ class EquipmentController extends Controller
     public function store(Request $request)
     {
         
-        $requestData = $request->all();
-        
-        Equipment::create($requestData);
+        $equipment = new Equipment();
 
-        return redirect('admin/equipment')->with('flash_message', 'Equipment added!');
+        if ($request->hasFile('picture')) {
+            $this->validate($request, [
+                'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+            $picture = $request->file('picture');
+            $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
+            $destinationPath = storage_path('/uploads/equipment');
+            $picturePath = $destinationPath . "/" . $name;
+            $picture->move($destinationPath, $name);
+            $equipment->picture = '/uploads/equipment' . $name;
+//            $equipment->picture = $request->get($destinationPath . 'name');
+        }
+
+        $equipment->name = $request->get('name');
+        $equipment->detail = $request->get('detail');
+        
+        $equipment->save();
+        return redirect('/admin/equipment');
     }
 
     /**
