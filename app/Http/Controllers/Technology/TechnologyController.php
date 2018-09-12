@@ -59,27 +59,23 @@ class TechnologyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'picture' => 'required|array|max:2048',
-            'picture.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'picture' => 'required|array',
+            'picture.*' => 'required',
+            'video' => 'required|array',
+            'video.*' => 'required',
         ]);
 
         $technology = new technology();
+        // dd($request->input('video'));
 
-        if (count($request->file('picture')) > 0) {
-            $names = [];
-            foreach ($request->file('picture') as $picture) {
-                $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-                $destinationPath = storage_path('/uploads/technology/picture');
-                $imagePath = $destinationPath . "/" . $name;
-                $picture->move($destinationPath, $name);
-                $names[] = $name;
-            }
-            $technology->picture = implode(",", $names);
+        if (count($request->input('picture')) > 0) {
+            $technology->picture = implode(",", $request->input('picture'));
+        }
+        if (count($request->input('video')) > 0) {
+            $technology->video = implode(",", $request->input('video'));
         }
 
         $technology->name = $request->get('name');
-        $technology->video = $request->get('video');
-        // $technology->equipment = $request->get('equipment');
         $technology->service = $request->get('service');
 
         $technology->save();

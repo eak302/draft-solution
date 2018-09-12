@@ -50,7 +50,7 @@ class TechnologyPictureController extends Controller
         $this->validate($request, [
             'name' => 'required',
             // 'picture' => 'required|array|max:2048',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $technology = new TechnologyPicture();
@@ -60,13 +60,14 @@ class TechnologyPictureController extends Controller
             // foreach ($request->file('picture') as $picture) {
             $picture = $request->file('picture');
             $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-            $destinationPath = storage_path('/uploads/technology/picture');
-            $imagePath = $destinationPath . "/" . $name;
-            $picture->move($destinationPath, $name);
+            // $destinationPath = storage_path('/uploads/technology/picture');
+            // $imagePath = $destinationPath . "/" . $name;
+            // $picture->move($destinationPath, $name);
             // $names[] = $name;
             // }
             // $technology->picture = implode(",", $names);
             $technology->picture = $name;
+            $request->picture->storeAs('public/uploads/technology/picture/', $name);
         }
 
         $technology->name = $request->get('name');

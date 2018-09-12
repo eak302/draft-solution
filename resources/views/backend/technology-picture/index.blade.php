@@ -27,7 +27,7 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->picture }}</td>
                 <td class="text-center">
-                    <form action="{{ route('technology.technology.destroy', $item->id) }}" method="POST">
+                    <form action="{{ route('technology-picture.technology-picture.destroy', $item->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger btn-sm">
