@@ -3,20 +3,19 @@
     <input class="form-control" name="name" type="text" id="name" value="{{ $technology->name or ''}}" >
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="addel">
-    <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
-        <label for="picture" class="control-label">{{ 'Picture' }}</label>
-        {{-- <input class="form-control" name="picture" type="file" id="picture" value="{{ $technology->picture or ''}}" > --}}
-        <div class="input-group target" style="margin-bottom: 10px;">
-            <input type="file" name="picture[]" class="form-control" accept="image/*">
-                <span class="input-group-btn">
-                <button type="button" class="btn btn-danger addel-delete"><i class="fa fa-remove"></i></button>
-            </span>
-        </div>
-        <button type="button" class="btn btn-success btn-block addel-add"><i class="fa fa-plus"></i></button>
-        {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
-    </div>
+
+<div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
+    <label for="picture" class="control-label">{{ 'Picture' }}</label>
+    {{-- <select name="picture" id="picture" class="form-control"> --}}
+        @foreach ($picture as $item)
+            {{-- <option style="background-image:url({{ asset('storage/uploads/technology/picture/' . $item->picture) }});" value="{{ $item->id }}">{{ $item->name }}</option> --}}
+            {{-- <option style="background-image:url(apple.png);">Apple</option> --}}
+            <img src="{{ asset('storage/uploads/technology/picture/' . $item->picture) }}" alt="">
+        @endforeach
+    {{-- </select> --}}
+    {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
 </div>
+
 <div class="form-group {{ $errors->has('video') ? 'has-error' : ''}}">
     <label for="video" class="control-label">{{ 'Video' }}</label>
     <select name="video" id="service" class="form-control">
@@ -26,7 +25,7 @@
     </select>
     {!! $errors->first('service', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group {{ $errors->has('equipment') ? 'has-error' : ''}}">
+{{-- <div class="form-group {{ $errors->has('equipment') ? 'has-error' : ''}}">
     <label for="equipment" class="control-label">{{ 'Equipment' }}</label>
     <select name="equipment" id="equipment" class="form-control">
         @foreach ($equipment as $item)
@@ -34,7 +33,7 @@
         @endforeach
     </select>
     {!! $errors->first('equipment', '<p class="help-block">:message</p>') !!}
-</div>
+</div> --}}
 
 <div class="form-group {{ $errors->has('service') ? 'has-error' : ''}}">
     <label for="service" class="control-label">{{ 'Service' }}</label>

@@ -40,6 +40,25 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+                        
+                            <div class="col-md-6">
+                                <select name="role" class="form-control" >
+                                    <option value="admin">Admin</option>
+                                    <option value="saleadmin">Sale admin</option>
+                                    <option value="supervisor">Supervisor</option>
+                                    <option value="sale">Sale</option>
+                                </select> 
+
+                                @if ($errors->has('role'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

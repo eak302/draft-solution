@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
 
 @section('page-title')
-    ข้อมูลเทคโนโลยี
+    ข้อมูลรูปภาพ
 @endsection
 @section('content')
     <div class="container">
@@ -10,9 +10,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Create New Technology</div>
+                    <div class="card-header">Create New Picture</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/technology') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/technology-picture') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -24,10 +24,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/technology') }}" accept-charset="UTF-8" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/technology-picture') }}" accept-charset="UTF-8" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('backend.technology.form', ['formMode' => 'create'])
+                            @include ('backend.technology-picture.form', ['formMode' => 'create'])
 
                         </form>
 

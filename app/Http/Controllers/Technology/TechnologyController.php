@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Technology;
 
-use App\Equipment;
 use App\Http\Controllers\Controller;
 use App\Service;
 use App\Technology;
+use App\TechnologyPicture;
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -43,9 +43,9 @@ class TechnologyController extends Controller
     public function create()
     {
         $service = Service::all();
-        $equipment = Equipment::all();
+        $picture = TechnologyPicture::all();
         $video = Video::all();
-        return view('backend.technology.create', compact('service', 'video', 'equipment'));
+        return view('backend.technology.create', compact('service', 'video', 'picture'));
     }
 
     /**
@@ -79,7 +79,7 @@ class TechnologyController extends Controller
 
         $technology->name = $request->get('name');
         $technology->video = $request->get('video');
-        $technology->equipment = $request->get('equipment');
+        // $technology->equipment = $request->get('equipment');
         $technology->service = $request->get('service');
 
         $technology->save();

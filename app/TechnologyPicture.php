@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Technology extends Model
+class TechnologyPicture extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'technologies';
+    protected $table = 'technologies_picture';
 
     /**
      * The database primary key value.
@@ -25,6 +25,5 @@ class Technology extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'picture', 'video', 'service'];
-
+    protected $fillable = ['name', 'picture'];
 }

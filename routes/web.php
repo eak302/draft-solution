@@ -1,26 +1,25 @@
 <?php
 
 /*
-  |--------------------------------------------------------------------------
-  | Web Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register web routes for your application. These
-  | routes are loaded by the RouteServiceProvider within a group which
-  | contains the "web" middleware group. Now create something great!
-  |
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
  */
 
 Auth::routes();
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 // backend
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    
+Route::group(['middleware' => ['auth', 'admin']], function () {
+
     Route::get('/', function () {
-        return view('backend.layouts.main');
+        return redirect('/admin');
     });
-    
+
     Route::get('admin', function () {
         return view('backend.layouts.main');
     })->name('admin');
@@ -29,6 +28,10 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 
     Route::resource('admin/technology', 'Technology\\TechnologyController', ['as' => 'technology']);
     Route::get('/admin/ajax-technology', 'Technology\\TechnologyController@dataAjaxTechnology')->name('ajax-technology');
+
+    Route::resource('admin/technology-picture', 'TechnologyPicture\\TechnologyPictureController',
+        ['as' => 'technology-picture']
+    );
 
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
 
@@ -40,11 +43,11 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
-//frontend 
-Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], function() {
-//    Route::get('/', function () {
-//        return view('frontend.layouts.main');
-//    });
+//frontend
+Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], function () {
+    Route::get('/', function () {
+        return redirect('/create/home');
+    });
 
     Route::get('/create/{form}', 'FrontendController@index')->name('create-form');
     Route::get('/session-clear', 'FrontendController@clear');
@@ -55,8 +58,8 @@ Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], func
 
     Route::get('/service-create', 'Service\\ServiceController@createService')->name('service-create');
     Route::post('/service-create', 'Service\\ServiceController@postCreateService')->name('service-post-create');
-    
+
 //    Route::get('/home', 'HomeController@index')->name('home');
-    
+
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });

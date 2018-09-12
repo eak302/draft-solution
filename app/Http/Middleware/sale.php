@@ -5,8 +5,8 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 
-
-class sale {
+class sale
+{
 
     /**
      * Handle an incoming request.
@@ -15,18 +15,18 @@ class sale {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle($request, Closure $next)
+    {
         if (auth()->guest()) {
             return redirect()->route('login');
-        }
-        else if (Auth::check() && Auth::user()->role == 'sale') {
-            return redirect('/');
+        } else if (Auth::check() && Auth::user()->role == 'sale') {
+            return $next($request);
         } else if (Auth::check() && Auth::user()->role == 'admin') {
             return redirect('/admin');
         } else if (Auth::check() && Auth::user()->role == 'supervisor') {
-            return redirect('/index.php');
+            return redirect('/index');
         } else {
-            return redirect('/index.php');
+            return redirect('/index');
         }
     }
 

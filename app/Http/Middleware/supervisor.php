@@ -5,7 +5,8 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 
-class supervisor {
+class supervisor
+{
 
     /**
      * Handle an incoming request.
@@ -14,18 +15,18 @@ class supervisor {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle($request, Closure $next)
+    {
         if (auth()->guest()) {
             return redirect()->route('login');
-        }
-        else if (Auth::check() && Auth::user()->role == 'supervisor') {
+        } else if (Auth::check() && Auth::user()->role == 'supervisor') {
             return $next($request);
         } elseif (Auth::check() && Auth::user()->role == 'admin') {
             return redirect('/admin');
         } elseif (Auth::check() && Auth::user()->role == 'saleadmin') {
-            return redirect('/index.php');
+            return redirect('/index');
         } else {
-            return redirect('/index.php');
+            return redirect('/index');
         }
     }
 
