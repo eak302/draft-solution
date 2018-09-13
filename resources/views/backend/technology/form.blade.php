@@ -4,16 +4,6 @@
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
-    <label for="picture" class="control-label">{{ 'Picture' }}</label>
-    {{-- <select name="picture" id="picture" class="form-control"> --}}
-        @foreach ($picture as $item)
-            {{-- <option style="background-image:url({{ asset('storage/app/public/uploads/technology/picture/' . $item->picture) }});" value="{{ $item->id }}">{{ $item->name }}</option> --}}
-            {{-- <option style="background-image:url(apple.png);">Apple</option> --}}
-            <img src="{{ asset('storage/app/public/uploads/technology/picture/' . $item->picture) }}" alt="">
-        @endforeach
-    {{-- </select> --}}
-    {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
 <div class="addel-picture">
     <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
         <label for="picture" class="control-label">{{ 'Picture' }}</label>

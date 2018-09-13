@@ -59,10 +59,10 @@ class EquipmentController extends Controller
             ]);
             $picture = $request->file('picture');
             $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-            $destinationPath = storage_path('/public/uploads/equipment');
+            $destinationPath = storage_path('/uploads/equipment');
             $picturePath = $destinationPath . "/" . $name;
             $picture->move($destinationPath, $name);
-            $equipment->picture = '/public/uploads/equipment' . $name;
+            $equipment->picture = '/uploads/equipment' . $name;
 //            $equipment->picture = $request->get($destinationPath . 'name');
         }
 
