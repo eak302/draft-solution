@@ -5,20 +5,13 @@
 </div>
 
 <div class="addel-picture">
+    {{-- {{ dd($picture) }} --}}
     <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
         <label for="picture" class="control-label">{{ 'Picture' }}</label>
-        {{-- <input class="form-control" name="picture" type="file" id="picture" value="{{ $technology->picture or ''}}" > --}}
-        <div class="input-group target" style="margin-bottom: 10px;">
-            <select name="picture[]" id="picture" class="form-control">
-                @foreach ($picture as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
-            </select>
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-danger addel-delete"><i class="fa fa-remove"></i></button>
-            </span>
-        </div>
-        <button type="button" class="btn btn-success btn-block addel-add"><i class="fa fa-plus"></i></button>
+        <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-media">
+            <i class="fa fa-plus"></i>
+        </button>
+        <input class="form-control" name="picture" type="text" id="picture" value="{{ $technology->picture or ''}}" readonly >
         {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -59,20 +52,6 @@
 <script src="https://www.jqueryscript.net/demo/Dynamic-Form-Element-Creation-And-Deletion-Plugin-Addel/addel.jquery.js"></script>
 <script>
     $(document).ready(function () {
-        $('.addel-picture').addel({
-            classes: {
-                target: 'target'
-            },
-            animation: {
-                duration: 100
-            }
-        }).on('addel-picture:delete', function (event) {
-            event.target.find(':select').val()
-            // if (!window.confirm('Are you absolutely positive you would like to delete: ' + '"' + event.target.find(':input').val() + '"?')) {
-            //     console.log('preventDefault()!');
-            //     event.preventDefault();
-            // }
-        });
 
         $('.addel-video').addel({
             classes: {

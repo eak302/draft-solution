@@ -36,4 +36,43 @@
             </div>
         </div>
     </div>
+    <div class="modal modal-fullscreen fade" id="modal-media">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal Media</h4>
+                </div>
+                <div class="modal-body" style="min-height: 350px;">
+                    <div id="show-thumbnail"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="btn-select">Select Image</button>
+                </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+    <script type="text/javascript">
+	$(function () { 
+        $('#modal-media').on('show.bs.modal', function (event) {
+
+        	$("#modal-media #show-thumbnail").load("{{ route('picture.get-picture', ['search' => 'technology']) }}", function(){}); 
+    	});
+
+        $('#btn-select').click(function() {
+    		var items = $.map($('input.select-item:checkbox:checked'), function(n, i){
+					return n.value;
+			    }),
+				itemsID = items.join(',');
+            console.log(itemsID);
+    		$('#picture').val(itemsID);
+    		$('#modal-media').modal('hide');
+  		});
+	});
+</script>
 @endsection

@@ -66,14 +66,25 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#"><i class="fa fa-cogs"></i> <span>Equipment</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('equipment.equipment.create') }}">Create Equipment</a></li>
+                    <li><a href="{{ route('equipment.equipment.index') }}">Show Equipment</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
                 <a href="#"><i class="fa fa-cogs"></i> <span>Picture</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('technology-picture.technology-picture.create') }}">Create Picture</a></li>
-                    <li><a href="{{ route('technology-picture.technology-picture.index') }}">Show Picture</a></li>
+                    <li><a href="{{ route('picture.picture.create') }}">Create Picture</a></li>
+                    <li><a href="{{ route('picture.picture.index') }}">Show Picture</a></li>
                 </ul>
             </li>
             <li class="treeview">

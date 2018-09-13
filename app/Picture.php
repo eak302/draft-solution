@@ -4,20 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Equipmentassignment extends Model
+class Picture extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'equipment-assignments';
+    protected $table = 'picture';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,5 @@ class Equipmentassignment extends Model
      *
      * @var array
      */
-    protected $fillable = ['technology_name', 'equipment_name', 'equipment_picture', 'layer'];
-
-    
+    protected $fillable = ['name', 'path'];
 }

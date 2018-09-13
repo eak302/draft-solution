@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Technology;
 
 use App\Http\Controllers\Controller;
+use App\Picture;
 use App\Service;
 use App\Technology;
-use App\TechnologyPicture;
 use App\Video;
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class TechnologyController extends Controller
     public function create()
     {
         $service = Service::all();
-        $picture = TechnologyPicture::all();
+        $picture = Picture::where('path', 'LIKE', 'technology')->get();
         $video = Video::all();
         return view('backend.technology.create', compact('service', 'video', 'picture'));
     }
@@ -59,8 +59,7 @@ class TechnologyController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'picture' => 'required|array',
-            'picture.*' => 'required',
+            'picture' => 'required',
             'video' => 'required|array',
             'video.*' => 'required',
         ]);
@@ -68,13 +67,11 @@ class TechnologyController extends Controller
         $technology = new technology();
         // dd($request->input('video'));
 
-        if (count($request->input('picture')) > 0) {
-            $technology->picture = implode(",", $request->input('picture'));
-        }
         if (count($request->input('video')) > 0) {
             $technology->video = implode(",", $request->input('video'));
         }
 
+        $technology->picture = $request->input('picture');
         $technology->name = $request->get('name');
         $technology->service = $request->get('service');
 

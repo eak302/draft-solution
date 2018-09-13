@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\EquipmentAssignment;
 
-use App\Http\Requests;
+use App\EquipmentAssignment;
 use App\Http\Controllers\Controller;
-
-use App\equipment-assignment;
 use Illuminate\Http\Request;
 
-class equipment-assignmentController extends Controller
+class EquipmentAssignmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,16 +19,16 @@ class equipment-assignmentController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $equipment-assignment = equipment-assignment::where('technology_name', 'LIKE', "%$keyword%")
+            $equipment_assignment = EquipmentAssignment::where('technology_name', 'LIKE', "%$keyword%")
                 ->orWhere('equipment_name', 'LIKE', "%$keyword%")
                 ->orWhere('equipment_picture', 'LIKE', "%$keyword%")
                 ->orWhere('layer', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $equipment-assignment = equipment-assignment::latest()->paginate($perPage);
+            $equipment_assignment = EquipmentAssignment::latest()->paginate($perPage);
         }
 
-        return view('backend.equipment-assignment.index', compact('equipment-assignment'));
+        return view('backend.equipment-assignment.index', compact('equipment_assignment'));
     }
 
     /**
@@ -52,10 +50,10 @@ class equipment-assignmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        equipment-assignment::create($requestData);
+
+        equipment - assignment::create($requestData);
 
         return redirect('admin/equipment-assignment')->with('flash_message', 'equipment-assignment added!');
     }
@@ -69,7 +67,7 @@ class equipment-assignmentController extends Controller
      */
     public function show($id)
     {
-        $equipment-assignment = equipment-assignment::findOrFail($id);
+        $equipment_assignment = EquipmentAssignment::findOrFail($id);
 
         return view('backend.equipment-assignment.show', compact('equipment-assignment'));
     }
@@ -83,7 +81,7 @@ class equipment-assignmentController extends Controller
      */
     public function edit($id)
     {
-        $equipment-assignment = equipment-assignment::findOrFail($id);
+        $equipment_assignment = EquipmentAssignment::findOrFail($id);
 
         return view('backend.equipment-assignment.edit', compact('equipment-assignment'));
     }
@@ -98,11 +96,11 @@ class equipment-assignmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
-        $equipment-assignment = equipment-assignment::findOrFail($id);
-        $equipment-assignment->update($requestData);
+
+        $equipment_assignment = EquipmentAssignment::findOrFail($id);
+        $equipment_assignment->update($requestData);
 
         return redirect('admin/equipment-assignment')->with('flash_message', 'equipment-assignment updated!');
     }
@@ -116,7 +114,7 @@ class equipment-assignmentController extends Controller
      */
     public function destroy($id)
     {
-        equipment-assignment::destroy($id);
+        equipment - assignment::destroy($id);
 
         return redirect('admin/equipment-assignment')->with('flash_message', 'equipment-assignment deleted!');
     }

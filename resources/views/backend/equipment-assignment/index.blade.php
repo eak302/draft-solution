@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('backend.layouts.main')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
+            {{-- @include('admin.sidebar') --}}
 
             <div class="col-md-9">
                 <div class="card">
@@ -30,14 +30,18 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Technology Name</th><th>Equipment Name</th><th>Equipment Picture</th><th>Actions</th>
+                                        <th>#</th>
+                                        <th>Technology Id</th>
+                                        <th>Equipment Id</th>
+                                        <th>Layer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($equipment-assignment as $item)
+                                @foreach($equipment_assignment as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->technology_name }}</td><td>{{ $item->equipment_name }}</td><td>{{ $item->equipment_picture }}</td>
+                                        <td>{{ $item->technology_id }}</td>
+                                        <td>{{ $item->equipment_id }}</td>
                                         <td>
                                             <a href="{{ url('/admin/equipment-assignment/' . $item->id) }}" title="View equipment-assignment"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/equipment-assignment/' . $item->id . '/edit') }}" title="Edit equipment-assignment"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -52,7 +56,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $equipment-assignment->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $equipment_assignment->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>

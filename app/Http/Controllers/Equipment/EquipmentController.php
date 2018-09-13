@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Equipment;
 
-use App\Http\Controllers\Controller;
-
 use App\Equipment;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class EquipmentController extends Controller
@@ -50,7 +49,7 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $equipment = new Equipment();
 
         if ($request->hasFile('picture')) {
@@ -59,16 +58,13 @@ class EquipmentController extends Controller
             ]);
             $picture = $request->file('picture');
             $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-            $destinationPath = storage_path('/uploads/equipment');
-            $picturePath = $destinationPath . "/" . $name;
-            $picture->move($destinationPath, $name);
-            $equipment->picture = '/uploads/equipment' . $name;
-//            $equipment->picture = $request->get($destinationPath . 'name');
+            $equipment->picture = $name;
+            $request->picture->storeAs('public/uploads/equipment/picture/', $name);
         }
 
         $equipment->name = $request->get('name');
         $equipment->detail = $request->get('detail');
-        
+
         $equipment->save();
         return redirect('/admin/equipment');
     }
@@ -111,9 +107,9 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $equipment = Equipment::findOrFail($id);
         $equipment->update($requestData);
 

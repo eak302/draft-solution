@@ -33,7 +33,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         ['as' => 'technology-picture']
     );
 
+    Route::resource('admin/picture', 'Picture\\PictureController',
+        ['as' => 'picture']
+    );
+    Route::get('/admin/get-picture/{search}', 'Picture\\PictureController@getPicture')->name('picture.get-picture');
+
     Route::resource('admin/equipment', 'Equipment\\EquipmentController', ['as' => 'equipment']);
+
+    Route::resource('admin/equipment-assignment', 'EquipmentAssignment\\EquipmentAssignmentController',
+        ['as' => 'equipment-assignment']
+    );
 
     Route::resource('admin/service', 'Service\\ServiceController', ['as' => 'service']);
 

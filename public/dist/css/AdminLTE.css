@@ -4978,3 +4978,121 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+/* Other */
+
+/*-------------------------
+		Icons
+        -------------------------*/
+
+        .bg-folder1{
+          position: relative;
+          float: left;
+          width: 200px;
+          padding: 10px 25px;
+          margin: 3px;
+          -moz-border-radius: 4px;
+          -webkit-border-radius:4px;
+          border-radius: 4px;
+      }
+
+      .bg-folder1 .image{
+          display: block;
+          width: 100%;
+          height: 70px;
+          text-align: center;
+          vertical-align: middle;
+          overflow: hidden;
+          margin-bottom: 5px;
+          border: 1px solid #ccc;
+          background-color: #fff;
+          -moz-border-radius: 4px;
+          -webkit-border-radius:4px;
+          border-radius: 4px;
+      }
+
+      .bg-folder1 .image table tr td{
+          width: 100%;
+          height: 70px;
+          text-align: center;
+          vertical-align: middle;
+      }
+
+      .bg-folder1 .image img{
+          max-width: 100%;
+          max-height: 100%;
+
+      }
+
+      .bg-folder1 .name{
+          display: block;
+          width: 100%;
+          font-size: 13px;
+          line-height: 13px;
+          height: 26px;
+          overflow: hidden;
+          text-align: center;
+          color: #333;
+          word-break: break-all;
+      }
+
+      .bg-folder1:hover{
+          background-color: #424f63;
+
+      }
+
+      .bg-folder1:hover .name{
+          color: #fff;
+      }
+
+      .bg-folder1 .btn-folder {z-index: 1000; position: absolute; margin: 3px; right: 10px; display: none}
+      .bg-folder1:hover .btn-folder {display: block;}
+      
+/* MODAL */
+.modal-body.modal-body-custom {
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+
+/* .modal-fullscreen */
+.modal-fullscreen {
+  background: transparent;
+}
+.modal-fullscreen .modal-content {
+  background: #fff;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modal-backdrop.modal-backdrop-fullscreen {
+  background: #ffffff;
+}
+.modal-backdrop.modal-backdrop-fullscreen.in {
+  opacity: 0.97;
+  filter: alpha(opacity=97);
+}
+
+/* .modal-fullscreen size: we use Bootstrap media query breakpoints */
+.modal-fullscreen .modal-dialog {
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 90%;
+}
+
+@media (min-width: 768px) {
+  .modal-fullscreen .modal-dialog {
+      width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-fullscreen .modal-dialog {
+      width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-fullscreen .modal-dialog {
+      width: 1170px;
+  }
+}
