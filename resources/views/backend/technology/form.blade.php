@@ -4,7 +4,6 @@
     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
 </div>
 
-<<<<<<< HEAD
 <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
     <label for="picture" class="control-label">{{ 'Picture' }}</label>
     {{-- <select name="picture" id="picture" class="form-control"> --}}
@@ -15,7 +14,6 @@
         @endforeach
     {{-- </select> --}}
     {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
-=======
 <div class="addel-picture">
     <div class="form-group {{ $errors->has('picture') ? 'has-error' : ''}}">
         <label for="picture" class="control-label">{{ 'Picture' }}</label>
@@ -33,7 +31,6 @@
         <button type="button" class="btn btn-success btn-block addel-add"><i class="fa fa-plus"></i></button>
         {!! $errors->first('picture', '<p class="help-block">:message</p>') !!}
     </div>
->>>>>>> 523014c58264f4a5ab5646cb1c91e111ffd2b5d9
 </div>
 
 <div class="addel-video">

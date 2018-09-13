@@ -60,15 +60,12 @@ class TechnologyPictureController extends Controller
             // foreach ($request->file('picture') as $picture) {
             $picture = $request->file('picture');
             $name = str_slug($request->name) . '.' . $picture->getClientOriginalExtension();
-<<<<<<< HEAD
 //            $destinationPath = storage_path('/uploads/technology/picture');
 //            $imagePath = $destinationPath . "/" . $name;
 //            $picture->move($destinationPath, $name);
-=======
             // $destinationPath = storage_path('/uploads/technology/picture');
             // $imagePath = $destinationPath . "/" . $name;
             // $picture->move($destinationPath, $name);
->>>>>>> 523014c58264f4a5ab5646cb1c91e111ffd2b5d9
             // $names[] = $name;
             // }
             // $technology->picture = implode(",", $names);

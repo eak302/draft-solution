@@ -9,25 +9,23 @@ use App\TechnologyPicture;
 use App\Video;
 use Illuminate\Http\Request;
 
-class TechnologyController extends Controller
-{
+class TechnologyController extends Controller {
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
             $technology = Technology::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('picture', 'LIKE', "%$keyword%")
-                ->orWhere('video', 'LIKE', "%$keyword%")
-                ->orWhere('equipment', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                            ->orWhere('picture', 'LIKE', "%$keyword%")
+                            ->orWhere('video', 'LIKE', "%$keyword%")
+                            ->orWhere('equipment', 'LIKE', "%$keyword%")
+                            ->latest()->paginate($perPage);
         } else {
             $technology = Technology::latest()->paginate($perPage);
         }
@@ -40,8 +38,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
-    {
+    public function create() {
         $service = Service::all();
         $picture = TechnologyPicture::all();
         $video = Video::all();
@@ -55,8 +52,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'picture' => 'required|array',
@@ -68,7 +64,7 @@ class TechnologyController extends Controller
         $technology = new technology();
         // dd($request->input('video'));
 
-<<<<<<< HEAD
+
         if ($request->hasFile('picture')) {
             // $names = [];
             // foreach ($request->file('picture') as $picture) {
@@ -82,20 +78,20 @@ class TechnologyController extends Controller
             // $technology->picture = implode(",", $names);
             $technology->picture = $name;
             $request->picture->storeAs('public/uploads/technology/picture/', $name);
-=======
-        if (count($request->input('picture')) > 0) {
-            $technology->picture = implode(",", $request->input('picture'));
-        }
-        if (count($request->input('video')) > 0) {
-            $technology->video = implode(",", $request->input('video'));
->>>>>>> 523014c58264f4a5ab5646cb1c91e111ffd2b5d9
-        }
 
-        $technology->name = $request->get('name');
-        $technology->service = $request->get('service');
+            if (count($request->input('picture')) > 0) {
+                $technology->picture = implode(",", $request->input('picture'));
+            }
+            if (count($request->input('video')) > 0) {
+                $technology->video = implode(",", $request->input('video'));
+            }
 
-        $technology->save();
-        return redirect('/admin/technology');
+            $technology->name = $request->get('name');
+            $technology->service = $request->get('service');
+
+            $technology->save();
+            return redirect('/admin/technology');
+        }
     }
 
     /**
@@ -105,8 +101,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
-    {
+    public function show($id) {
         $technology = Technology::findOrFail($id);
 
         return view('backend.technology.show', compact('technology'));
@@ -119,8 +114,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $service = Service::all();
         $video = Video::all();
         $equipment = Equipment::all();
@@ -137,8 +131,7 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
         $requestData = $request->all();
 
@@ -155,15 +148,13 @@ class TechnologyController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         Technology::destroy($id);
 
         return redirect('admin/technology')->with('flash_message', 'Technology deleted!');
     }
 
-    public function dataAjaxTechnology(Request $request)
-    {
+    public function dataAjaxTechnology(Request $request) {
         $data = [];
         if ($request->has('q')) {
             $search = $request->q;
