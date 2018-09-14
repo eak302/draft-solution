@@ -17,6 +17,25 @@ class admin
      */
     public function handle($request, Closure $next)
     {
+        if (Auth::check() && Auth::user()->role == 'admin') {
+        return $next($request);
+    }
+    elseif (Auth::check() && Auth::user()->role == 'agent') {
+        return redirect('/agent');
+    }
+    else {
+        return redirect('/customer');
+    }
+        
+        
+        /*if (auth()->guest()) {
+            return redirect()->route('login');
+        } else if (Auth::check() && Auth::user()->role == 'admin') {
+            return $next($request);
+        } else {
+            return redirect('/test');
+        }*/
+            
         if (auth()->guest()) {
             return redirect()->route('login');
         } else if (Auth::check() && Auth::user()->role == 'admin') {

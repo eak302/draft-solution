@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 //frontend
-Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], function () {
+    Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], function () {
     Route::get('/', function () {
         return redirect('/create/home');
     });
@@ -67,8 +67,19 @@ Route::group(['middleware' => ['auth', 'saleadmin', 'sale', 'supervisor']], func
 
     Route::get('/service-create', 'Service\\ServiceController@createService')->name('service-create');
     Route::post('/service-create', 'Service\\ServiceController@postCreateService')->name('service-post-create');
+    
+        
+    Route::get('/admin', function(){
+        echo 'hello admin';    
+    });
+        
+    Route::get('/sale', function(){
+        echo 'hello sale'; 
+    });
+    
+    
 
 //    Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    //Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
