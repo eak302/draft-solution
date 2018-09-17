@@ -77,7 +77,9 @@ class FrontendController extends Controller
     
     public function sale()
     {
-        return 'sale page';
+        //return 'sale page';
+        //return view('backend.layouts.main');
+        return view('home');
     }
     
     public function saleadmin()

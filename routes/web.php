@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 
     Route::get('/sale', 'FrontendController@sale');
+    
     Route::get('/saleadmin', 'FrontendController@saleadmin');
     Route::get('/supervisor', 'FrontendController@supervisor');
 
