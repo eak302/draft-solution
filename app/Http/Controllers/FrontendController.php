@@ -74,4 +74,19 @@ class FrontendController extends Controller
         $request->session()->forget('draft');
         return redirect('/create/customer');
     }
+    
+    public function sale()
+    {
+        return 'sale page';
+    }
+    
+    public function saleadmin()
+    {
+        return 'saleadmin page';
+    }
+    
+    public function supervisor()
+    {
+        return 'supervisor page';
+    }
 }

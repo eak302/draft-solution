@@ -17,7 +17,15 @@ class sale
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->guest()) {
+        
+        if (Auth::check() && Auth::user()->role == 'sale') {
+            return $next($request);
+        }
+        else {
+            return redirect('/admin');
+        }
+        
+        /*if (auth()->guest()) {
             return redirect()->route('login');
         } else if (Auth::check() && Auth::user()->role == 'sale') {
             return $next($request);
@@ -27,7 +35,7 @@ class sale
             return redirect('/index');
         } else {
             return redirect('/index');
-        }
+        }*/
     }
 
 }

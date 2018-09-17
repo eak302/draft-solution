@@ -17,15 +17,31 @@ class admin
      */
     public function handle($request, Closure $next)
     {
+        /*if (Auth::check() && Auth::user()->role == 'admin') {
+            return $next($request);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'agent') {
+            return redirect('/agent');
+        }
+        else {
+            return redirect('/customer');
+        }*/
+        
         if (Auth::check() && Auth::user()->role == 'admin') {
-        return $next($request);
-    }
-    elseif (Auth::check() && Auth::user()->role == 'agent') {
-        return redirect('/agent');
-    }
-    else {
-        return redirect('/customer');
-    }
+            return $next($request);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'sale') {
+            return redirect('/sale');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'saleadmin') {
+            return redirect('/saleadmin');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'supervisor') {
+            return redirect('/supervisor');
+        }
+        else {
+            return redirect('/sale');
+        }
         
         
         /*if (auth()->guest()) {
@@ -36,7 +52,7 @@ class admin
             return redirect('/test');
         }*/
             
-        if (auth()->guest()) {
+        /*if (auth()->guest()) {
             return redirect()->route('login');
         } else if (Auth::check() && Auth::user()->role == 'admin') {
             return $next($request);
@@ -46,7 +62,7 @@ class admin
             return redirect('/index');
         } else {
             return redirect('/index');
-        }
+        }*/
     }
 
 }
